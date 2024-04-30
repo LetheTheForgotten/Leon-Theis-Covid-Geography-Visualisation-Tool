@@ -38,7 +38,7 @@ two warnings involving a duplicate key "cool" will appear.
 
 this is from the plotly javascript library I am using, its safe to ignore
 
-#Deployment
+# Deployment
 
 running does not to my knowledge require node.js or npm installed but this has not been tested on a machine without them
 
