@@ -1,0 +1,48 @@
+.main {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  height: 100%;
+}
+
+.close-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.table-container {
+}
+
+
+.input-button {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.warning {
+  padding: 10px;
+}
+
+.input {
+  width: 100%;
+}
+
+.upper-warning-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}

@@ -1,0 +1,36 @@
+.submitcontainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputs {
+  padding: 10px;
+  justify-items: center;
+  margin: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.datepickers {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+}
+
+.filter {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+}

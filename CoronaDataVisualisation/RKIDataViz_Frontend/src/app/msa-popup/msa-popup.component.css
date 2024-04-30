@@ -1,0 +1,29 @@
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0px 0px 0px 10px;
+}
+
+.time-input {
+  margin: 0px 0px 0px 10px;
+}
+
+.button-input {
+  margin: 0px 10px 0px 10px;
+}

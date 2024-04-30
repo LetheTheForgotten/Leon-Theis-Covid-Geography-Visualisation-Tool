@@ -1,0 +1,88 @@
+
+<div class="main-container">
+  <div class="table">
+    <mat-form-field class="filter">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+
+
+
+
+    <table mat-table
+           [dataSource]="tableData"
+           matSort
+           class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="selected">
+        <th mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header>
+          <mat-checkbox (change)="$event ? masterToggleDialouge() : null"
+                        [indeterminate]="!isAllSelectedDialouge() && !isNoneSelectedDialouge()"
+                        [checked]="isAllSelectedDialouge()">
+
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox (change)="toggleDialouge(element)" checked={{element.selected}}></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="pangolin lineage">
+        <th mat-header-cell
+            *matHeaderCellDef>
+          pangolin lineage
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.lineage}}</td>
+      </ng-container>
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="count">
+        <th mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header>
+          count
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.count}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+  <div class="inputs">
+    <mat-form-field>
+      Minimum Sample Count
+      <input matInput color="primary" type="number" [(ngModel)]="minCount">
+    </mat-form-field>
+
+    <div class="datepickers">
+      <mat-form-field>
+        <input matInput [max]="maxDateInput" [min]="minDate" [matDatepicker]="pickerStartDatePang" [formControl]="dateStartFormControl" placeholder="Start Date" (dateChange)="updateMinDatePicker($event)">
+        <mat-datepicker-toggle matSuffix [for]="pickerStartDatePang"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStartDatePang></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [max]="maxDate" [min]="minDateInput" [matDatepicker]="pickerEndDatePang" [formControl]="dateEndFormControl" placeholder="End Date" (dateChange)="updateMaxDatePicker($event)">
+        <mat-datepicker-toggle matSuffix [for]="pickerEndDatePang"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEndDatePang></mat-datepicker>
+      </mat-form-field>
+
+      <button class="buttons" mat-flat-button color="warn" (click)="clearDates()">Clear Date Selection</button>
+
+    </div>
+
+    <div class="submitcontainer">
+    
+        <button class="buttons" mat-raised-button  color="primary" (click)="submitPLZChart()">Generate Plot With Selected Data</button>
+    
+        <button class ="buttons" mat-raised-button  color="primary" (click)="submitAllPLZChart()">Generate Plot With All Possible Data</button>
+      
+
+    </div>
+  </div>
+</div>

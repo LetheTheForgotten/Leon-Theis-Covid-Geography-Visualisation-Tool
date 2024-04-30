@@ -1,0 +1,68 @@
+.main {
+  padding: 15px;
+}
+
+.togglez {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  padding-left: 25px;
+  align-items: center;
+}
+
+.stack-panel-vertical {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.stack-panel-horizontal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.map-container {
+  width: 100%;
+  height: 75vh;
+}
+
+
+.graph-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.stack-panel-horizontal-right-aligned {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.buttons-container {
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.inner-buttons-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.buttons-padding {
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+}

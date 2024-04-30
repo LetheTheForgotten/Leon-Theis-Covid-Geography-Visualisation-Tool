@@ -1,0 +1,41 @@
+<div class="container">
+  <p>
+    Output is sorted descending by score when more than two sequences are selected.
+  </p>
+  <div class="submitcontainer">
+    <div class="input-field">
+      <mat-form-field>
+        match score
+        <input matInput class="input-field" color="primary" type="number" [(ngModel)]="matchScore">
+      </mat-form-field>
+    </div>
+    <div class="input-field">
+      <mat-form-field>
+        gap penalty
+        <input matInput class="input-field" color="primary" type="number" [(ngModel)]="gapPenalty">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="submitcontainer">
+
+    <div class="input-field">
+      <mat-form-field>
+        mismatch score
+        <input matInput class="input-field" color="primary" type="number" [(ngModel)]="mismatchScore">
+      </mat-form-field>
+    </div>
+    <div class="input-field">
+      <mat-form-field>
+        extension penalty
+        <input matInput class="input-field" color="primary" type="number" [(ngModel)]="extensionPenalty">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <mat-checkbox color="primary" [disabled]="moreThanTwo" [(ngModel)]="showAlign">Show Alignments</mat-checkbox>
+    <br />
+    <button mat-raised-button class="button-input" color="primary" (click)="submitSequenceAlign()">Run Sequence Alignment</button>
+    <a mat-raised-button class="button-input" color="primary" [disabled]="sequenceAlignState" href="{{environment.DOWNLOAD_PAIRWISE_SEQUENCE_PATH}}">download Sequences as TXT</a>
+  </div>
+</div>

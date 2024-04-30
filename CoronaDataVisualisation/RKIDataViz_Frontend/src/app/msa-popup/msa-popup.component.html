@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="header-container">
+    <p>
+      Due to MUSCLE being a command line interface there is no way to stop once it has started.<br />
+      It is recommended to set a maximum runtime, a value of 0 will let MUSCLE run until it is complete.
+    </p>
+
+  </div>
+  <div class="time-input">
+    <mat-form-field>
+      Timeout (in hours)
+      <input matInput color="primary" type="number" [(ngModel)]="MSAtimeout">
+    </mat-form-field>
+  </div>
+  <div class="buttons-container">
+    <button mat-raised-button color="primary" class="button-input" (click)="submitMSA()">Run MUSCLE MSA</button>
+    <mat-divider></mat-divider>
+    <a mat-flat-button color="accent" class="button-input" [disabled]="MSAState" href="{{environment.DOWNLOAD_FASTA_PATH}}">Download MSA as Fasta</a>
+
+
+  </div>
+
+
+</div>

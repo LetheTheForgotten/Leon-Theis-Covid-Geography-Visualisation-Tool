@@ -1,0 +1,60 @@
+
+<div class="main">
+  <div class="stack-panel-vertical">
+    <div class="stack-panel-horizontal">
+      <div class="map-container mat-elevation-z4">
+        <app-map-element></app-map-element>
+      </div>
+
+      <div class="graph-container mat-elevation-z3">
+        <div class="stack-panel-horizontal-right-aligned">
+          <a mat-flat-button class="buttons-padding" *ngIf="graphVisible" target="_blank" [routerLink]="['/graph']" mat-button-flat color="primary" (click)="setGraphInvis()">Pop Out Graph Pane</a>
+          <button mat-flat-button color="accent" class="buttons-padding" *ngIf="!graphVisible" (click)="setGraphVisible()">Show Graph Pane</button>
+        </div>
+        <app-graphview *ngIf="graphVisible" style="width:100%"></app-graphview>
+      </div>
+    </div>
+    <div class="buttons-container">
+      <div class="togglez">
+        PLZ
+
+        <mat-slide-toggle [checked]="checked" class="buttons-padding" (change)="changeMode($event)"></mat-slide-toggle>
+
+        Sequence
+      </div>
+
+      <button class="buttons-padding" mat-flat-button color="warn" (click)="openTable()">open table</button>
+      <a mat-flat-button class="buttons-padding" target="_blank" [routerLink]="['/table']" mat-button-flat color="accent">Pop Table</a>
+
+      <mat-divider></mat-divider>
+
+      <div class="inner-buttons-container" *ngIf="mode===enum.PostalCode">
+
+        <button class="buttons-padding" title="Figures That Show Change In Lineage Over Time" mat-flat-button color="primary" (click)="openPangonlinPieDialouge()">Summary</button>
+
+        <button class="buttons-padding" title="Figures Displaying The Count of Samples Found In Each Postal Code" mat-flat-button color="primary" (click)="openPLZScatterChartDialouge()">Lineages Per Postal Code</button>
+
+        <button class="buttons-padding" title="Figures Displaying How Many Postal Codes Each Lineage Was Found In"mat-flat-button color="primary" (click)="openLineageScatterChartDialouge()">Postal Codes Per Lineage</button>
+
+        <!---<button class="buttons-padding" mat-flat-button color="primary" (click)="calculateBayesDistance()"> Bayes Distance</button>-->
+      </div>
+
+      <div class="inner-buttons-container" *ngIf="mode===enum.Sequence">
+
+        <button class="buttons-padding" mat-flat-button color="primary" (click)="openPairwiseDialouge()"> Pairwise Sequence Alignment </button>
+
+        <button class="buttons-padding" mat-flat-button color="primary" (click)="openMSADialouge()">Multiple Sequence Alignment</button>
+
+        <a mat-flat-button color="accent" class="buttons-padding" (click)="downloadSequences()">Download Selected as Fasta</a>
+        <a mat-flat-button color="accent" class="buttons-padding" (click)="downloadMetaData()">Download Metadata of Selected as CSV</a>
+      </div>
+
+      <mat-divider></mat-divider>
+      <a mat-flat-button color="accent" class="buttons-padding" href="{{environment.DOWNLOAD_ADDRESS_JSON}}">Download Address Dictionary</a>
+
+      <button class="buttons-padding" mat-flat-button color="primary" (click)="clearLocalStorage()"> Clear Local Storage </button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,226 @@
+<div class="main">
+
+  <div class="table-container">
+    <div *ngIf="TableMode===enum.PostalCode">
+
+      <mat-form-field class="filter">
+        <input matInput (keyup)="applyFilterPLZTable($event)" placeholder="Filter">
+      </mat-form-field>
+
+
+      <table mat-table
+             [dataSource]="dataSourcePLZ"
+             matSort
+             class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="selected">
+          <th mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header>
+            <mat-checkbox (change)="$event ? masterTogglePLZTable() : null"
+                          [indeterminate]="!isAllSelectedPLZTable() && !isNoneSelectedPLZTable()"
+                          [checked]="isAllSelectedPLZTable()">
+
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox (change)="togglePLZ(element)" checked={{element.selected}}></mat-checkbox>
+            
+          </td>
+        </ng-container>
+
+        <!-- Location Name Column-->
+        <ng-container matColumnDef="place_name">
+          <th mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header>
+            Lab Location
+          </th>
+          <td mat-cell *matCellDef="let element">{{element.place_name}}</td>
+        </ng-container>
+
+        <!-- postal code Column -->
+        <ng-container matColumnDef="postal_code">
+          <th mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header>
+            Postal Code
+          </th>
+          <td mat-cell *matCellDef="let element">{{element.postal_code}}</td>
+        </ng-container>
+
+        <!-- # of samples Column -->
+        <ng-container matColumnDef="number_of_samples">
+          <th mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header>
+            Number of Available Samples
+          </th>
+          <td mat-cell *matCellDef="let element">{{element.number_of_samples}}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+
+    </div>
+
+
+
+
+    <div *ngIf="TableMode===enum.Sequence">
+
+      <div>
+
+
+
+
+      </div>
+      <div>
+        <div>
+          <div class="upper-warning-container">
+
+            <div *ngIf="seqPLZAdditionFormControl.invalid && (seqPLZAdditionFormControl.dirty || seqPLZAdditionFormControl.touched)"
+                 class="alert alert-danger warning">
+              <div *ngIf="seqPLZAdditionFormControl.errors?.['required']">Input is required.</div>
+
+              <div *ngIf="seqPLZAdditionFormControl.errors?.['acceptedValue']">
+                PLZ must be present in dataset
+              </div>
+              <div *ngIf="seqPLZAdditionFormControl.errors?.['forbiddenValue']">
+                PLZ cannot be doubled
+              </div>
+            </div>
+
+            <form class="input-button">
+              <mat-form-field>
+                <input type="text" placeholder="Pick one" matInput [formControl]="seqPLZAdditionFormControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let PLZ of PLZlist" [value]="PLZ">
+                    {{ PLZ }}
+                  </mat-option>
+                </mat-autocomplete>
+
+              </mat-form-field>
+              <button style="margin: 0px 10px 20px 10px; " mat-raised-button color="primary" [disabled]="!seqPLZAdditionFormControl.valid && buttonActivated" (click)="addSeqToTableFromForm()">Submit</button>
+            </form>
+
+
+
+          </div>
+          <mat-chip-set #chipGrid style=" padding-bottom: 20px;">
+            @for (element of currentPLZList | keyvalue ; track element){
+            @if (element.value){
+            <mat-chip highlighted color="primary" (removed)="removePLZfromSeqMode(element.key)">
+              {{element.key}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            }}
+          </mat-chip-set>
+
+        </div>
+
+        <div class="filter">
+          <mat-form-field style="margin-right:15px">
+            <input matInput (keyup)="applyFilterSeqTable($event)" placeholder="Filter">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [max]="maxDateInput" [matDatepicker]="pickerStartDateSeq" [formControl]="dateStartFormControl" placeholder="Start Date" (dateChange)="applyStartDateFilterSeqTable($event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerStartDateSeq"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStartDateSeq></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [min]="minDateInput" [matDatepicker]="pickerEndDateSeq" [formControl]="dateEndFormControl" placeholder="End Date" (dateChange)="applyEndDateFilterSeqTable($event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerEndDateSeq"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEndDateSeq></mat-datepicker>
+          </mat-form-field>
+          <button style="margin: 10px 10px 0px 10px; " mat-flat-button color="warn" (click)=" clearSeqTableDates($event)">clear dates</button>
+        </div>
+
+
+
+
+        <table mat-table
+               [dataSource]="dataSourceSeq"
+               matSort
+               class="mat-elevation-z8">
+          <!-- Position Column -->
+          <ng-container matColumnDef="selected">
+            <th mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+              <mat-checkbox (change)="$event ? masterToggleSeqTable() : null"
+                            [indeterminate]="!isAllSelectedSeqTable() && !isNoneSelectedSeqTable()"
+                            [checked]="isAllSelectedSeqTable()">
+
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox (change)="toggleSeq(element)" checked={{element.selected}}></mat-checkbox>
+           
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="postal_code">
+            <th mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+              Postal Code
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.postal_code}}</td>
+          </ng-container>
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="sequence_id">
+            <th mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+              sequence ID
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.sequence_id}}</td>
+          </ng-container>
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="pang_lineage">
+            <th mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+              pangolin lineage
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.pang_lineage}}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="date_sequenced">
+            <th mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+              date sequenced
+            </th>
+            <td mat-cell *matCellDef="let element">{{element.date_sequenced | date:'shortDate'}}</td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedSeqColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedSeqColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+  <div class="close-button">
+    <button mat-flat-button color="accent" (click)="closeDialouge()" *ngIf="isItDialouge">Close</button>
+  </div>
+</div>
+

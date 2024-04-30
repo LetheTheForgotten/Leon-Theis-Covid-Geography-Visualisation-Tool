@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RKIDataViz_Backend", "RKIDataViz_Backend\RKIDataViz_Backend.pyproj", "{1B57F4A5-729E-4D9D-BAF8-7BEF9709508E}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "RKIDataViz_Frontend", "RKIDataViz_Frontend\RKIDataViz_Frontend.esproj", "{57030C9A-94E1-425C-B24E-5D3A293ABB43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B57F4A5-729E-4D9D-BAF8-7BEF9709508E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B57F4A5-729E-4D9D-BAF8-7BEF9709508E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B57F4A5-729E-4D9D-BAF8-7BEF9709508E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B57F4A5-729E-4D9D-BAF8-7BEF9709508E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57030C9A-94E1-425C-B24E-5D3A293ABB43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57030C9A-94E1-425C-B24E-5D3A293ABB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57030C9A-94E1-425C-B24E-5D3A293ABB43}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{57030C9A-94E1-425C-B24E-5D3A293ABB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57030C9A-94E1-425C-B24E-5D3A293ABB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57030C9A-94E1-425C-B24E-5D3A293ABB43}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A28BA903-1F0C-4E59-AC0C-F9DD73765A65}
+	EndGlobalSection
+EndGlobal
