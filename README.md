@@ -1,7 +1,8 @@
 # BA Leon Theis
 
 ## Description
-A locally runnable web application that enables comparison of sequenced COVID-19 data as it relates to their geopgraphical location.\
+A locally runnable web application that enables comparison of sequenced COVID-19 data as it relates to their geographical location.
+Bachelor Thesis submitted to HHU by Leon Theis in March 2024.
 
 ## Compatability:
 
